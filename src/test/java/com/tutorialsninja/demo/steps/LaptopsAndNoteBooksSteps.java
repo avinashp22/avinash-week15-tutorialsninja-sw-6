@@ -87,12 +87,12 @@ public class LaptopsAndNoteBooksSteps {
     }
 
     @And("I should see new customer text")
-    public void iShouldSeeNewCustomerText() throws InterruptedException {
-        Assert.assertEquals("New Customer", new CheckoutPage().getNewCustomerText());
+    public void iShouldSeeNewCustomerText()  {
+        Assert.assertEquals(new CheckoutPage().getNewCustomerText(), "New Customer");
     }
 
     @And("I click on guest checkout button")
-    public void iClickOnGuestCheckoutButton() throws InterruptedException {
+    public void iClickOnGuestCheckoutButton()  {
         new CheckoutPage().clickOnGuestCheckOutRadioButton();
     }
 
@@ -105,7 +105,7 @@ public class LaptopsAndNoteBooksSteps {
     public void iFilledAllMandatoryFieldOfCheckoutPage() {
         new CheckoutPage().enterFirstName("Avinashsssh");
         new CheckoutPage().enterLastName("Pateelllel");
-        new CheckoutPage().enterEmailId("avinahshhpaatelll@gmail.com");
+        new CheckoutPage().enterEmailId("avi");
         new CheckoutPage().enterTelephone("07756412596");
         new CheckoutPage().enterAddressLine1("1 Prime Road");
         new CheckoutPage().enterCity("London");

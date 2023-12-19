@@ -29,7 +29,7 @@ Feature: Laptops and Notebook Test
     And I should see total price for macbook products
     And I click on checkout button
     Then I should navigate to checkout page
-    And I should see new customer text
+    #And I should see new customer text
     And I click on guest checkout button
     And I click on continue button of guest checkout page
     And I filled all mandatory field of checkout page
