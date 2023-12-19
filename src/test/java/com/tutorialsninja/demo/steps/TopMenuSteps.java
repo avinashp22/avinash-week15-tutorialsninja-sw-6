@@ -1,39 +1,47 @@
 package com.tutorialsninja.demo.steps;
 
-import com.tutorialsninja.demo.pages.DesktopsPage;
+import com.tutorialsninja.demo.pages.ComponentsPage;
+import com.tutorialsninja.demo.pages.DesktopPage;
 import com.tutorialsninja.demo.pages.HomePage;
+import com.tutorialsninja.demo.pages.LaptopAndNotebookPage;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.testng.Assert;
 
 public class TopMenuSteps {
-    @Given("I am on the homepage")
-    public void iAmOnTheHomepage() {
+    @When("I mouse hover and click on desktop tab")
+    public void iMouseHoverAndClickOnDesktopTab() {
+        new HomePage().navigateToDesktopPage();
     }
 
-    @And("I hover on the Desktops tab and click")
-    public void iHoverOnTheDesktopsTabAndClick() {
-        new HomePage().hoverOnDesktopsTabAndClick();
+    @And("I select menu {string}")
+    public void iSelectMenu(String menu) {
+        new HomePage().selectMenu(menu);
     }
 
-    @And("call selectMenu method and pass the menu {string}")
-    public void callSelectMenuMethodAndPassTheMenu(String menu) {
-        new HomePage().callSelectMenuMethodAndClick(menu);
+    @Then("I should navigate to desktop page successfully")
+    public void iShouldNavigateToDesktopPageSuccessfully() {
+        Assert.assertEquals("Desktops", new DesktopPage().getDesktopText());
     }
 
-    @Then("I can see the text {string}")
-    public void iCanSeeTheTextDesktops() {
-        Assert.assertEquals(new DesktopsPage().getTextFromDesktops(), "Desktops", "Error");
+    @When("I mouse hover and click on laptop and notebook tab")
+    public void iMouseHoverAndClickOnLaptopAndNotebookTab() {
+        new HomePage().navigateToLaptopAndNotebooksPage();
     }
 
-    @And("I hover on the Laptops & Notebooks tab and click")
-    public void iHoverOnTheLaptopsNotebooksTabAndClick() {
-        new HomePage().hoverOnlaptopsAndNotebooksAndClick();
+    @Then("I should navigate to laptop and notebook page successfully")
+    public void iShouldNavigateToLaptopAndNotebookPageSuccessfully() {
+        Assert.assertEquals("Laptops & Notebooks", new LaptopAndNotebookPage().getLaptopAndNotebookText());
     }
 
-    @And("I hover on the Components tab and click")
-    public void iHoverOnTheComponentsTabAndClick() {
-        new HomePage().hoverOnComponentsAndClick();
+    @When("I mouse hover and click on component tab")
+    public void iMouseHoverAndClickOnComponentTab() {
+        new HomePage().navigateToComponentsPage();
+    }
+
+    @Then("I should navigate to component page successfully")
+    public void iShouldNavigateToComponentPageSuccessfully() {
+        Assert.assertEquals("Components", new ComponentsPage().getComponentText());
     }
 }

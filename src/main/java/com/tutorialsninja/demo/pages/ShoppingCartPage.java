@@ -1,10 +1,8 @@
 package com.tutorialsninja.demo.pages;
 
-
 import com.tutorialsninja.demo.utility.Utility;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -18,199 +16,84 @@ public class ShoppingCartPage extends Utility {
     }
 
     @CacheLookup
-    @FindBy(css ="#content>h1")
-    WebElement textShoppingCart;
-    @CacheLookup
-    @FindBy(css ="body > div:nth-child(4) > div:nth-child(2) > div:nth-child(1) > form:nth-child(2) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2) > a:nth-child(1)")
-    WebElement textProductName;
-    @CacheLookup
-    @FindBy(xpath ="//small[text()='Delivery Date:2022-11-30']")
-    WebElement textDeliveryDate;
-    @CacheLookup
-    @FindBy(xpath ="//td[text()='Product 21']")
-    WebElement textModel;
-    @CacheLookup
-    @FindBy(css ="#content > div.row > div > table > tbody > tr:nth-child(4) > td:nth-child(2)")
-    WebElement textTotal;
-    @CacheLookup
-    @FindBy(css ="body > div:nth-child(4) > div:nth-child(2) > div:nth-child(1) > form:nth-child(2) > div:nth-child(1) > table:nth-child(1) > tbody:nth-child(2) > tr:nth-child(1) > td:nth-child(2) > a:nth-child(1)")
-    WebElement textMacBook;
-    @CacheLookup
-    @FindBy(css ="div.input-group.btn-block>input")
-    WebElement quantity;
-    @CacheLookup
-    @FindBy(css =".fa.fa-refresh")
-    WebElement updateTab;
-    @CacheLookup
-    @FindBy(css =".alert.alert-success.alert-dismissible")
-    WebElement textMessage;
-    @CacheLookup
-    @FindBy(css ="#content > div.row > div > table > tbody > tr:nth-child(4) > td:nth-child(2)")
-    WebElement textTotal1;
-    @CacheLookup
-    @FindBy(css ="a.btn.btn-primary")
-    WebElement checkOutbtn;
-    @CacheLookup
-    @FindBy(xpath ="//h1[text()='Checkout']")
-    WebElement textCheckout;
-    @CacheLookup
-    @FindBy(xpath ="//h2[text()='New Customer']")
-    WebElement textNewCustomer;
-    @CacheLookup
-    @FindBy(css ="input[value='guest']")
-    WebElement guestCheckOutRadio;
-    @CacheLookup
-    @FindBy(css ="#button-account")
-    WebElement continueButton;
-    @CacheLookup
-    @FindBy(css ="#input-payment-firstname")
-    WebElement firstName;
-    @CacheLookup
-    @FindBy(css ="#input-payment-lastname")
-    WebElement lastName;
-    @CacheLookup
-    @FindBy(css ="#input-payment-email")
-    WebElement email;
-    @CacheLookup
-    @FindBy(css ="#input-payment-telephone")
-    WebElement telephone;
-    @CacheLookup
-    @FindBy(css ="#input-payment-address-1")
-    WebElement address;
-    @CacheLookup
-    @FindBy(css ="#input-payment-city")
-    WebElement city;
-    @CacheLookup
-    @FindBy(css ="#input-payment-postcode")
-    WebElement postcode;
-    @CacheLookup
-    @FindBy(css ="#input-payment-zone")
-    WebElement zone;
-    @CacheLookup
-    @FindBy(css ="#button-guest")
-    WebElement continueButton1;
-    @CacheLookup
-    @FindBy(css ="textarea[name='comment']")
-    WebElement addCommentsAboutOrder;
-    @CacheLookup
-    @FindBy(css ="input[type='checkbox']")
-    WebElement tncCheckbox;
-    @CacheLookup
-    @FindBy(css ="#button-payment-method")
-    WebElement continueButton2;
-    @CacheLookup
-    @FindBy(css =".alert.alert-danger.alert-dismissible")
-    WebElement textWarning;
+    @FindBy(xpath = "//div[@id='content']//h1")
+    WebElement shoppingCartText;
 
-    public String getTextShoppingCart() {
-        log.info("Get text shopping cart : " +textShoppingCart.toString());
-        return getTextFromElement(textShoppingCart);
+    @CacheLookup
+    @FindBy(xpath = "//div[@class = 'table-responsive']/table/tbody/tr/td[2]/a")
+    WebElement productText;
+
+    @CacheLookup
+    @FindBy(xpath = "//div[@class = 'table-responsive']/table/tbody/tr/td[2]/small[1]")
+    WebElement deliveryDate;
+
+    @CacheLookup
+    @FindBy(xpath = "//div[@class = 'table-responsive']/table/tbody/tr/td[3]")
+    WebElement productDesktopModel;
+
+    @CacheLookup
+    @FindBy(xpath = "//div[@class = 'table-responsive']/table/tbody/tr/td[6]")
+    WebElement totalPrice;
+
+    @CacheLookup
+    @FindBy(xpath = "//div[@class='input-group btn-block']/input[@type='text']")
+    WebElement quantityField;
+
+    @CacheLookup
+    @FindBy(xpath = "//i[@class = 'fa fa-refresh']")
+    WebElement updateButton;
+
+    @CacheLookup
+    @FindBy(xpath = "//div[@id='checkout-cart']/div[1]")
+    WebElement updateSuccessText;
+
+    @CacheLookup
+    @FindBy(css = "a.btn.btn-primary")
+    WebElement checkoutButton;
+
+    public String getShoppingCartText() {
+        log.info(" Verify the text Shopping Cart " + shoppingCartText.toString());
+        return getTextFromElement(shoppingCartText);
     }
 
-    public String getTextProductName() {
-        log.info("Get text product name : " +textProductName.toString());
-        return getTextFromElement(textProductName);
+    public String getProductText() {
+        log.info("Verify the Product name HP LP3065 " + productText.toString());
+        return getTextFromElement(productText);
     }
 
-    public String getTextDeliveryDate() {
-        log.info("Get text delivery date : " +textDeliveryDate.toString());
-        return getTextFromElement(textDeliveryDate);
+    public String getDeliveryDateOfProduct() {
+        log.info("Verify the Delivery Date 2022-11-30 " + deliveryDate.toString());
+        return getTextFromElement(deliveryDate);
     }
 
-    public String getTextModel() {
-        log.info("Get text model " +textModel.toString());
-        return getTextFromElement(textModel);
+    public String getProductModel() {
+        log.info("Verify the Model Product21 " + productDesktopModel.toString());
+        return getTextFromElement(productDesktopModel);
     }
 
-    public String getTextTotal() {
-        log.info("Get text total " +textTotal.toString());
-        return getTextFromElement(textTotal);
+    public String getTotalPrice() {
+        log.info("Verify the Total £74.73 " + totalPrice.toString());
+        return getTextFromElement(totalPrice);
     }
 
-    public String getTextMacBook() {
-        log.info("Get text MacBook " +textMacBook.toString());
-        return getTextFromElement(textMacBook);
+    public void changeQuantityForProduct(String text) {
+        quantityField.clear();
+        sendTextToElement(quantityField, text);
+        log.info("Change Quantity " + text + " to quantity field " + quantityField.toString());
     }
 
-    public void changeQuantity() {
-        sendTextToElement(quantity, Keys.BACK_SPACE + "2");
-        log.info("Change Quantity " +quantity.toString());
+    public void clickOnUpdateQuantity() {
+        clickOnElement(updateButton);
+        log.info(" Click on “Update” Tab " + updateButton.toString());
     }
 
-    public void clickOnUpdateTab() {
-        clickOnElement(updateTab);
-        log.info("Click on update tab " +updateTab.toString());
+    public String getUpdateSuccessfullyText() {
+        log.info("Getting welcome back text " + updateSuccessText.toString());
+        return getTextFromElement(updateSuccessText);
     }
 
-    public String getTextMessage() {
-        log.info("get text message " +textMessage.toString());
-        return getTextFromElement(textMessage);
-    }
-
-    public String getTextTotal1() {
-        log.info("Get text total " +textTotal1.toString());
-        return getTextFromElement(textTotal1);
-    }
-
-    public void clickOnCheckOutButton() {
-        clickOnElement(checkOutbtn);
-        log.info("Click on check out button " +checkOutbtn.toString());
-    }
-
-    public String getTextCheckOut() {
-        log.info("Get text Check out " +textCheckout.toString());
-        return getTextFromElement(textCheckout);
-    }
-
-    public String getTextNewCustomer() {
-        log.info("Get text new customer " +textNewCustomer.toString());
-        return getTextFromElement(textNewCustomer);
-    }
-
-    public void clickOnGuestCheckOutRadio() {
-        clickOnElement(guestCheckOutRadio);
-        log.info("Click on guest check out radio " +guestCheckOutRadio.toString());
-    }
-
-    public void clickOnContinueButton() {
-        clickOnElement(continueButton);
-        log.info("Click on continue button " +continueButton.toString());
-    }
-
-    public void fillInMandatoryFields() {
-        sendTextToElement(firstName, "Avinash");
-        sendTextToElement(lastName, "Patel");
-        sendTextToElement(email, "avinashp22@gmail.com");
-        sendTextToElement(telephone, "07729456325");
-        sendTextToElement(address, "1 Prime Road");
-        sendTextToElement(city, "London");
-        sendTextToElement(postcode, "NW104ER");
-        selectByVisibleTextFromDropDown(zone, "Greater London");
-        log.info("Mandatory fields " );
-    }
-
-    public void clickOnContinueButton1() {
-        clickOnElement(continueButton1);
-        log.info("Click on continue button " +continueButton1.toString());
-    }
-
-    public void addCommentsAboutOrder() {
-        sendTextToElement(addCommentsAboutOrder, "Thank You for Your Order");
-        log.info("Add comments about order " +addCommentsAboutOrder.toString());
-    }
-
-    public void clickOnTermsAndConditionCheckbox() {
-        clickOnElement(tncCheckbox);
-        log.info("Click on terms and condition checkbox " +tncCheckbox.toString());
-    }
-
-    public void clickOnContinueButton2() {
-        clickOnElement(continueButton2);
-        log.info("Click on continue button " +continueButton2.toString());
-    }
-
-    public String getTextWarningMessage() {
-        log.info("Get text warning message " +textWarning.toString());
-        return getTextFromElement(textWarning);
+    public void clickOnCheckoutButton() {
+        clickOnElement(checkoutButton);
+        log.info("Click on “Checkout” button " + checkoutButton.toString());
     }
 }

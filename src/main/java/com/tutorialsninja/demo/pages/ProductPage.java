@@ -1,10 +1,8 @@
 package com.tutorialsninja.demo.pages;
 
-
 import com.tutorialsninja.demo.utility.Utility;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 public class ProductPage extends Utility {
-
     private static final Logger log = LogManager.getLogger(ProductPage.class.getName());
 
     public ProductPage() {
@@ -21,98 +18,96 @@ public class ProductPage extends Utility {
     }
 
     @CacheLookup
-    @FindBy(xpath = "//h1[text()='MacBook']")
-    WebElement textMacBook;
-    @CacheLookup
-    @FindBy(css = "#button-cart")
-    WebElement addToCartButton;
-    @CacheLookup
-    @FindBy(css = ".alert.alert-success.alert-dismissible")
-    WebElement textSuccess;
-    @CacheLookup
-    @FindBy(css = ".alert.alert-success.alert-dismissible a:nth-of-type(2)")
-    WebElement linkShoppingCart;
-    @CacheLookup
-    @FindBy(css = "#content h1")
-    WebElement textHPLP3065;
-    @CacheLookup
-    @FindBy(css = "#input-quantity")
-    WebElement quantity;
-
-    @CacheLookup
-    @FindBy(css = ".alert.alert-success.alert-dismissible")
-    WebElement textMessageSuccess;
+    @FindBy(xpath = "//a[contains(text(),'HP LP3065')]")
+    WebElement productTextHPLP3065;
 
     @CacheLookup
     @FindBy(xpath = "//div[@class = 'input-group date']//button")
-    WebElement dateOption;
+    WebElement calenderButton;
+
     @CacheLookup
-    @FindBy(xpath = "//div[@class = 'datepicker']/div[1]//th[@class='picker-switch']")
-    WebElement monthAndYearOption;
+    @FindBy(xpath = "//div[@class='datepicker-days']//table//th[@class='picker-switch']")
+    WebElement monthYearText;
+
     @CacheLookup
-    @FindBy(xpath = "//div[@class = 'datepicker']/div[1]//th[@class='next']")
-    WebElement datePickerOption;
+    @FindBy(xpath = "//div[@class='datepicker']/div[1]//table//th[normalize-space()='›']")
+    WebElement nextButtonOfCalender;
 
-    public String getTextMacBook(){
-        log.info("Get text macbook " + textMacBook.toString());
-        return getTextFromElement(textMacBook);
-    }
-    public void clickOnAddToCartButton(){
-        clickOnElement(addToCartButton);
-        log.info("Click on add to cart button " + addToCartButton.toString());
-    }
-    public String getTextSuccess(){
-        log.info("Get text success " + textSuccess.toString());
-        return getTextFromElement(textSuccess);
-    }
-    public void clickLinkShoppingCart(){
-        clickOnElement(linkShoppingCart);
-        log.info("Click link shopping cart " + linkShoppingCart.toString());
+    @CacheLookup
+    @FindBy(xpath = "//div[@class='datepicker']//table//td")
+    List<WebElement> dayText;
+
+    @CacheLookup
+    @FindBy(xpath = "//input[@id='input-quantity']")
+    WebElement quantityField;
+
+    @CacheLookup
+    @FindBy(xpath = "//button[@id='button-cart']")
+    WebElement addToCartButton;
+
+    @CacheLookup
+    @FindBy(xpath = "//div[@class='alert alert-success alert-dismissible']")
+    WebElement getSuccessText;
+
+    @CacheLookup
+    @FindBy(xpath = "//a[contains(text(),'shopping cart')]")
+    WebElement shoppingCartButton;
+
+    @CacheLookup
+    @FindBy(xpath = "//h1[contains(text(),'MacBook')]")
+    WebElement macBookText;
+
+    public String getProductHPLP3065() {
+        log.info("Verify the Text \"HP LP3065\" " + productTextHPLP3065.toString());
+        return getTextFromElement(productTextHPLP3065);
     }
 
-
-
-    public String getTextHPLP3065(){
-        log.info("Get text " + textHPLP3065.toString());
-        return getTextFromElement(textHPLP3065);
-    }
-    public void enterQuantity(){
-        sendTextToElement(quantity,"");
-        log.info("Enter quantity " + quantity.toString());
-    }
-
-    public String getTextMessageSuccess(){
-        log.info("Get text message Success : " + textMessageSuccess.toString());
-        return getTextFromElement(textMessageSuccess);
-    }
-    public void clickOnLinkShoppingCart(){
-        clickOnElement(linkShoppingCart);
-        log.info("Click on shopping cart link : " + linkShoppingCart.toString());
-    }
-    public void selectDeliveryDate(){
-        String year = "2022";
-        String month = "November";
-        String date = "30";
-        clickOnElement(dateOption);
+    public void selectDate(String year, String month, String date) {
+        clickOnElement(calenderButton);
+        log.info("Select " + year + month + date + " to date field " + calenderButton.toString());
         while (true) {
-            String monthAndYear = monthAndYearOption.getText();
+            String monthAndYear = monthYearText.getText();
             String[] arr = monthAndYear.split(" ");
             String mon = arr[0];
             String yer = arr[1];
             if (mon.equalsIgnoreCase(month) && yer.equalsIgnoreCase(year)) {
                 break;
             } else {
-                clickOnElement(datePickerOption);
+                clickOnElement(nextButtonOfCalender);
             }
         }
-        List<WebElement> allDates = driver.findElements(By.xpath("//div[@class = 'datepicker']/div[1]//tbody/tr/td[@class = 'day']"));
+        List<WebElement> allDates = dayText;
         for (WebElement e : allDates) {
             if (e.getText().equalsIgnoreCase(date)) {
                 e.click();
                 break;
             }
         }
-        log.info("Select delivery date : " + allDates.toString());
     }
 
+    public void addQuantityForProduct(String text) {
+        quantityField.clear();
+        sendTextToElement(quantityField, text);
+        log.info("Enter Qty " + text + " to quantity field " + quantityField.toString());
+    }
+
+    public void clickOnAddToCartButton() {
+        mouseHoverToElementAndClick(addToCartButton);
+        log.info("Clicking on Login Button " + addToCartButton.toString());
+    }
+
+    public String getSuccessText() {
+        log.info("Verify the Message “Success: You have added HP LP3065 to your shopping cart!” " + getSuccessText.toString());
+        return getTextFromElement(getSuccessText);
+    }
+
+    public void clickOnShoppingCartButton() {
+        mouseHoverToElementAndClick(shoppingCartButton);
+        log.info("Click on link “shopping cart” display into success message " + shoppingCartButton.toString());
+    }
+
+    public String getProductMacBookText() {
+        log.info("Verify text MacBook " + macBookText.toString());
+        return getTextFromElement(macBookText);
+    }
 }

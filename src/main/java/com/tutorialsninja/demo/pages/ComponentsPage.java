@@ -1,6 +1,5 @@
 package com.tutorialsninja.demo.pages;
 
-
 import com.tutorialsninja.demo.utility.Utility;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -10,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class ComponentsPage extends Utility {
-
     private static final Logger log = LogManager.getLogger(ComponentsPage.class.getName());
 
     public ComponentsPage() {
@@ -18,12 +16,11 @@ public class ComponentsPage extends Utility {
     }
 
     @CacheLookup
-    @FindBy(css ="#content h2")
-    WebElement components;
+    @FindBy(xpath = "//h2[contains(text(),'Components')]")
+    WebElement componentText;
 
-
-    public String getTextComponents(){
-        log.info("Get text from components " + components.toString());
-        return getTextFromElement(components);
+    public String getComponentText() {
+        log.info("Verify the text ‘Components’ " + componentText.toString());
+        return getTextFromElement(componentText);
     }
 }

@@ -1,24 +1,29 @@
 package com.tutorialsninja.demo.steps;
 
-import com.tutorialsninja.demo.pages.DesktopsPage;
+import com.tutorialsninja.demo.pages.DesktopPage;
 import com.tutorialsninja.demo.pages.HomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.testng.Assert;
 
 public class DesktopsSteps {
-    @And("click on {string}")
-    public void clickOn(String showDesktop) {
-        new HomePage().callSelectMenuMethodAndClick("Show AllDesktops");
+    @And("I click on show all desktops")
+    public void iClickOnShowAllDesktops() {
+        new HomePage().clickOnShowAllDesktop();
     }
 
-    @And("select sort by position {string}")
-    public void selectSortByPosition(String arg0) {
-        new DesktopsPage().clickOnSortByDropDown();
-        new DesktopsPage().selectNameZToAFromDropdown();
+    @And("I click on sort by position")
+    public void iClickOnSortByPosition() {
+        new DesktopPage().clickOnSortByPosition();
     }
 
-    @Then("I can see the products in descending order")
-    public void iCanSeeTheProductsInDescendingOrder() throws InterruptedException {
-        new DesktopsPage().verifyProductsArrangedInAlphabeticallyDescendingOrder();
+    @And("I select product sort by {string}")
+    public void iSelectProductSortBy(String text) {
+        new DesktopPage().selectProductSorted(text);
+    }
+
+    @Then("I should see product arrange in alphabetical order successfully")
+    public void iShouldSeeProductArrangeInAlphabeticalOrderSuccessfully() {
+        Assert.assertEquals(new DesktopPage().expectedList(), new DesktopPage().getSortedProductList());
     }
 }

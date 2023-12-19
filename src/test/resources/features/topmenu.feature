@@ -1,21 +1,21 @@
-Feature: Verify user should navigate to the pages successfully
+Feature: Top Menu Test
 
-  Scenario: Verify user should navigate to desktops page successfully
-    Given I am on the homepage
-    And I hover on the Desktops tab and click
-    And call selectMenu method and pass the menu "Show AllDesktops"
-    Then I can see the text 'Desktops'
+  Background: I am on homepage
 
+  @sanity @smoke @regression
+  Scenario: User should navigate to desktop page successfully
+    When I mouse hover and click on desktop tab
+    And I select menu "Show All Desktops"
+    Then I should navigate to desktop page successfully
 
-  Scenario: Verify user should navigate to LaptopsAndNotebooks page successfully
-    Given I am on the homepage
-    And I hover on the Laptops & Notebooks tab and click
-    And call selectMenu method and pass the menu "Show AllLaptops & Notebooks"
-    Then I can see the text 'Laptops & Notebooks'
+  @regression
+  Scenario: User should navigate to laptop and notebook page successfully
+    When I mouse hover and click on laptop and notebook tab
+    And I select menu "Show All Laptops & Notebooks"
+    Then I should navigate to laptop and notebook page successfully
 
-
-  Scenario: Verify user should navigate to Components page successfully
-    Given I am on the homepage
-    And I hover on the Components tab and click
-    And call selectMenu method and pass the menu "Show AllComponents"
-    Then I can see the text 'Components'
+  @sanity @regression
+  Scenario: User should navigate to component page successfully
+    When I mouse hover and click on component tab
+    And I select menu "Show All Components"
+    Then I should navigate to component page successfully
