@@ -10,12 +10,13 @@ Feature: Desktop Test
     And I select product sort by "Name (Z - A)"
     Then I should see product arrange in alphabetical order successfully
 
+  # ran out of time
 #  @regression
 #  Scenario Outline: Verify Product Added To Shopping Cart SuccessFully
 #    Given I am on homepage
 #    When I click on currency and select GBP
-#    And I mouse hover and click on topmenu options "Desktops"
-#    And I mouse hover and click on topmenu sub options "Show All Desktops"
+#    And I mouse hover and click on top menu options "Desktops"
+#    And I mouse hover and click on top menu sub options "Show All Desktops"
 #    And I select sort by name A to Z "Name (A - Z)"
 #    And I select product "<product>"
 #    And I should see the product text "<product>"
