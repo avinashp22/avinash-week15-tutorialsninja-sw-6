@@ -111,7 +111,7 @@ public class LaptopsAndNoteBooksSteps {
         new CheckoutPage().enterCity("London");
         new CheckoutPage().enterPostCode("NW1 1RF");
         new CheckoutPage().selectCountry("United Kingdom");
-        new CheckoutPage().selectRegion("London");
+        new CheckoutPage().selectRegion("Aberdeen");
     }
 
     @And("I click on continue after fill all detail on checkout page")

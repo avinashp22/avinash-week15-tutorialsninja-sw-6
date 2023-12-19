@@ -34,10 +34,6 @@ public class DesktopPage extends Utility {
     @FindBy(xpath = "//h4/a")
     List<WebElement> productsList1;
 
-    @CacheLookup
-    @FindBy(xpath = "//a[contains(text(),'HP LP3065')]")
-    WebElement productTextHPLP3065;
-
     public String getDesktopText() {
         log.info("Verify the text ‘Desktops’" + desktopText.toString());
         return getTextFromElement(desktopText);
@@ -77,8 +73,4 @@ public class DesktopPage extends Utility {
         log.info("Select option product sorted by " + text + "from sort by options " + clickOnSortBy.toString());
     }
 
-    public void clickOnProductHPLP3065(String productName) {
-        clickOnElement(productTextHPLP3065);
-        log.info("Clicking on " + productName + " " + productTextHPLP3065.toString());
-    }
 }
