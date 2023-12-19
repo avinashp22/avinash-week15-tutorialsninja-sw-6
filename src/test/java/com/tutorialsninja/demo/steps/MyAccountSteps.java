@@ -35,7 +35,7 @@ public class MyAccountSteps {
     public void iFilledAllMandatoryFieldOfRegistration() {
         new RegisterPage().enterFirstName("Avvinashhh");
         new RegisterPage().enterLastName("Paaaateeellll");
-        new RegisterPage().enterEmail("Aviiinnnashss" + new Utility().getRandomString(4) + "@gmail.com");
+        new RegisterPage().enterEmail("Aviiinnnaashss" + new Utility().getRandomString(4) + "@gmail.com");
         new RegisterPage().enterTelephone("07765896541");
         new RegisterPage().enterPassword("Prime12345");
         new RegisterPage().enterConfirmPassword("Prime12345");

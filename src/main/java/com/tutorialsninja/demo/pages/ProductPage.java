@@ -18,10 +18,6 @@ public class ProductPage extends Utility {
     }
 
     @CacheLookup
-    @FindBy(xpath = "//a[contains(text(),'HP LP3065')]")
-    WebElement productTextHPLP3065;
-
-    @CacheLookup
     @FindBy(xpath = "//div[@class = 'input-group date']//button")
     WebElement calenderButton;
 
@@ -56,11 +52,6 @@ public class ProductPage extends Utility {
     @CacheLookup
     @FindBy(xpath = "//h1[contains(text(),'MacBook')]")
     WebElement macBookText;
-
-    public String getProductHPLP3065() {
-        log.info("Verify the Text \"HP LP3065\" " + productTextHPLP3065.toString());
-        return getTextFromElement(productTextHPLP3065);
-    }
 
     public void selectDate(String year, String month, String date) {
         clickOnElement(calenderButton);
